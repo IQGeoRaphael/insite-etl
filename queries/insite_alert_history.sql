@@ -1,0 +1,13 @@
+SELECT
+  '{'+ CAST(AL.OBJECT_ID AS varchar(266)) +'}' AS ID,
+  AL.OBJECT_TYPE,
+  AL.WO_ID,
+  AL.ALERT_ID,
+  AL.GlobalID,
+  AL.OBJECTID,
+  LOC.Shape.STAsText() AS ShapeText
+FROM 
+  LKE_INSITE.dbo.ALERT_RECORDS_EVW AS AL
+LEFT JOIN 
+  LKE_INSITE.dbo.LOCATION_EVW AS LOC 
+  ON AL.OBJECT_ID = LOC.location_guid;
